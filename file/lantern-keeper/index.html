@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
+<title>등불지기: 늪의 밤</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="c" aria-label="게임 화면"></canvas>
+
+<div id="hud" hidden>
+  <div class="xpbar"><div id="xpfill"></div></div>
+  <div class="hudrow">
+    <span id="lvl">Lv 1</span>
+    <span id="time">00:00</span>
+    <div class="right"><span id="kills">처치 0</span><button id="pauseBtn" aria-label="일시정지">❚❚</button></div>
+  </div>
+</div>
+<div id="inv"></div>
+<div id="banner"></div>
+
+<div id="start" class="overlay show">
+  <div class="panel">
+    <h1>등불지기</h1>
+    <p class="lead">늪에 밤이 내렸습니다. 등불 하나로 새벽이 올 때까지, 10분을 버텨 보세요.</p>
+    <dl class="how">
+      <div><dt>이동</dt><dd>WASD 또는 방향키. 휴대폰은 화면을 끌어서 움직여요.</dd></div>
+      <div><dt>공격</dt><dd>저절로 나갑니다. 피하는 데만 집중하세요.</dd></div>
+      <div><dt>성장</dt><dd>쓰러진 적이 남긴 구슬을 모아 레벨을 올리고, 능력을 하나씩 고르세요.</dd></div>
+      <div><dt>멈춤</dt><dd>Esc 또는 P</dd></div>
+      <div><dt>난이도</dt><dd>쉬움은 적이 약하고 체력이 넉넉해서 아이들도 끝까지 버틸 수 있어요.</dd></div>
+    </dl>
+    <div class="btns"><button id="easyBtn" class="primary">쉬움으로 시작</button><button id="normalBtn" class="ghost">보통으로 시작</button></div>
+    <p id="bestLine" class="best"></p>
+  </div>
+</div>
+
+<div id="levelup" class="overlay">
+  <div class="panel">
+    <h2 id="luTitle">레벨 2</h2>
+    <p class="lead">능력 하나를 고르세요. 숫자키 1, 2, 3으로도 고를 수 있어요.</p>
+    <div id="choices"></div>
+  </div>
+</div>
+
+<div id="pause" class="overlay">
+  <div class="panel">
+    <h2>잠시 멈춤</h2>
+    <p class="lead">늪의 시간이 멈췄습니다.</p>
+    <div class="btns"><button id="resumeBtn" class="primary">계속하기</button><button id="restartBtn" class="ghost">처음부터</button></div>
+  </div>
+</div>
+
+<div id="over" class="overlay">
+  <div class="panel">
+    <h2 id="overTitle">등불이 꺼졌습니다</h2>
+    <p id="overLead" class="lead"></p>
+    <div class="stats">
+      <div><b id="stTime">0:00</b><small>버틴 시간</small></div>
+      <div><b id="stLv">1</b><small>레벨</small></div>
+      <div><b id="stKills">0</b><small>처치</small></div>
+    </div>
+    <div class="btns"><button id="againBtn" class="primary">다시 하기</button></div>
+    <p id="overBest" class="best"></p>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
